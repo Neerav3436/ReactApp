@@ -3,7 +3,17 @@ import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 import Moment from 'react-moment';
 
 class DishDetail extends Component {
+
+    componentDidMount(){
+        console.log("DishDetail Component Did mount");
+    }
+
+    componentDidUpdate(){
+        console.log("DishDetail Component Did Update")
+    }
+
     render() {
+        console.log("DishDetail Render")
         return (
             this.props.selectedDish != null ?
                 <div className='row'>
