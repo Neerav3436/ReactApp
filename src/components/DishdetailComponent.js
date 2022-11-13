@@ -3,10 +3,6 @@ import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 import Moment from 'react-moment';
 
 class DishDetail extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             this.props.selectedDish != null ?
