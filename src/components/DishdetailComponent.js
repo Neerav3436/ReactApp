@@ -1,20 +1,39 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardImg, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
-function RenderDish({ selectedDish }) {
+function RenderDish({ selectedDish, comments }) {
     return (
         selectedDish != null ?
-            <div className='row'>
-                <Card className='col-12 col-md-5 m-1'>
-                    <CardImg object src={selectedDish.image} alt={selectedDish.name} />
-                    <CardBody>
-                        <CardTitle heading>{selectedDish.name}</CardTitle>
-                        <CardText>{selectedDish.description}</CardText>
-                    </CardBody>
-                </Card>
-                <RenderComments data={selectedDish.comments} />
+            <div className='container'>
+                <div className='row'>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className='col-12'>
+                        <h3>{selectedDish.name}</h3>
+                        <hr />
+                    </div>
+                </div>
+                <div className="row">
+                    <RenderDishItem data={selectedDish} />
+                    <RenderComments data={comments} />
+                </div>
             </div> : <div></div>
+    );
+}
+
+function RenderDishItem({ data }) {
+    return (
+        <Card className='col-12 col-md-5 m-1'>
+            <CardImg object src={data.image} alt={data.name} />
+            <CardBody>
+                <CardTitle heading>{data.name}</CardTitle>
+                <CardText>{data.description}</CardText>
+            </CardBody>
+        </Card>
     );
 }
 
